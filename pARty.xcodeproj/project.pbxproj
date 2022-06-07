@@ -16,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1341637B284FCD8A00A94226 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E44D6EE3284FBB6E00AE5729 /* pARty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pARty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D6EE6284FBB6E00AE5729 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E44D6EE8284FBB6E00AE5729 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		E44D6EE5284FBB6E00AE5729 /* pARty */ = {
 			isa = PBXGroup;
 			children = (
+				1341637B284FCD8A00A94226 /* Info.plist */,
 				E44D6EE6284FBB6E00AE5729 /* AppDelegate.swift */,
 				E44D6EE8284FBB6E00AE5729 /* ViewController.swift */,
 				E44D6EEA284FBB6E00AE5729 /* Experience.rcproject */,
@@ -285,9 +287,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9U7NL4KM84;
+				DEVELOPMENT_TEAM = V8V28A4DX2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pARty/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -315,9 +320,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9U7NL4KM84;
+				DEVELOPMENT_TEAM = V8V28A4DX2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pARty/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

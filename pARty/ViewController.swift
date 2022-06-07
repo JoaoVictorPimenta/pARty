@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         
         // Configurando plano horizontal
         let config = ARWorldTrackingConfiguration()
-        config.planeDetection = [.horizontal]
+        config.planeDetection = .horizontal
         arView.session.run(config)
     }
     
@@ -64,7 +64,16 @@ class ViewController: UIViewController {
     }
     
     func takePhoto() {
-        
+        let image = arView.snapshot(saveToHDR: false, completion: { image in
+            // Compriminho a imagem
+             let compressedImage = UIImage(data: (image?.pngData())!)
+             // Salvando no album
+             UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
+        })
+    }
+    
+    @IBAction func clickButton(_ sender: Any) {
+        self.takePhoto()
     }
 }
 
