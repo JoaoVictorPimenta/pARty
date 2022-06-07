@@ -10,7 +10,6 @@
         <!--ARView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" userLabel="ARView" customClass="ViewController" customModule="pARty" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HEK-YX-Ohz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -28,6 +27,7 @@
                                             <constraint firstAttribute="height" constant="80" id="AUr-0m-2ox"/>
                                             <constraint firstAttribute="width" constant="85" id="ERo-L9-MD7"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="circle.inset.filled" catalog="system"/>
@@ -61,6 +61,7 @@
                         <outlet property="arView" destination="pas-Th-zPa" id="bqf-BP-tt8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="133.92857142857142"/>
         </scene>
