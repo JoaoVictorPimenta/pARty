@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1341639E284FDF5200A94226 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341639D284FDF5200A94226 /* PhotoManager.swift */; };
+		134163A0284FE48700A94226 /* CreateFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1341639F284FE48700A94226 /* CreateFace.swift */; };
 		E44D6EE7284FBB6E00AE5729 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44D6EE6284FBB6E00AE5729 /* AppDelegate.swift */; };
 		E44D6EE9284FBB6E00AE5729 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44D6EE8284FBB6E00AE5729 /* ViewController.swift */; };
 		E44D6EEB284FBB6E00AE5729 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = E44D6EEA284FBB6E00AE5729 /* Experience.rcproject */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1341637B284FCD8A00A94226 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1341639D284FDF5200A94226 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		1341639F284FE48700A94226 /* CreateFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFace.swift; sourceTree = "<group>"; };
 		E44D6EE3284FBB6E00AE5729 /* pARty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pARty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E44D6EE6284FBB6E00AE5729 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E44D6EE8284FBB6E00AE5729 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +41,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1341639B284FDF2500A94226 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E44D6EE8284FBB6E00AE5729 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1341639C284FDF4600A94226 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1341639D284FDF5200A94226 /* PhotoManager.swift */,
+				1341639F284FE48700A94226 /* CreateFace.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E44D6EDA284FBB6E00AE5729 = {
 			isa = PBXGroup;
 			children = (
@@ -55,8 +77,10 @@
 		E44D6EE5284FBB6E00AE5729 /* pARty */ = {
 			isa = PBXGroup;
 			children = (
+				1341639C284FDF4600A94226 /* Models */,
+				1341639B284FDF2500A94226 /* Controllers */,
+				1341637B284FCD8A00A94226 /* Info.plist */,
 				E44D6EE6284FBB6E00AE5729 /* AppDelegate.swift */,
-				E44D6EE8284FBB6E00AE5729 /* ViewController.swift */,
 				E44D6EEA284FBB6E00AE5729 /* Experience.rcproject */,
 				E44D6EEC284FBB6E00AE5729 /* Main.storyboard */,
 				E44D6EEF284FBB7000AE5729 /* Assets.xcassets */,
@@ -136,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				134163A0284FE48700A94226 /* CreateFace.swift in Sources */,
 				E44D6EE9284FBB6E00AE5729 /* ViewController.swift in Sources */,
 				E44D6EE7284FBB6E00AE5729 /* AppDelegate.swift in Sources */,
+				1341639E284FDF5200A94226 /* PhotoManager.swift in Sources */,
 				E44D6EEB284FBB6E00AE5729 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,9 +311,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9U7NL4KM84;
+				DEVELOPMENT_TEAM = V8V28A4DX2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pARty/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -315,9 +344,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9U7NL4KM84;
+				DEVELOPMENT_TEAM = V8V28A4DX2;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pARty/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
