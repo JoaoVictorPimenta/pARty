@@ -62,5 +62,9 @@ class ViewController: UIViewController {
         arView.scene.anchors.append(anchorEntity)
         
     }
+    
+    func takePhoto() {
+        
+    }
 }
 
