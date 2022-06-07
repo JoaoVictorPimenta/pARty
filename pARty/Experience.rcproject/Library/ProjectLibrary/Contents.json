@@ -8,5 +8,20 @@
     "libraryIdentifier" : "b8fe4d5d2ba4ef95d590023ab97afb0b",
     "format" : "model",
     "displayName" : "body.usdz"
+  },
+  {
+    "libraryIdentifier" : "799fa93b4c3442f35aefaa43487350bf",
+    "format" : "model",
+    "displayName" : "modelo1.usdz"
+  },
+  {
+    "libraryIdentifier" : "b09bc29042f28cb5fe1ed56963282cbf",
+    "format" : "model",
+    "displayName" : "modelo2.usdz"
+  },
+  {
+    "libraryIdentifier" : "be9e9df996a09bea62fcc60009a0bf10",
+    "format" : "model",
+    "displayName" : "modelo3.usdz"
   }
 ]
