@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Load the "Box" scene from the "Experience" Reality File
         let boxAnchor = try! Experience.loadCena()
         
@@ -50,6 +49,7 @@ class ViewController: UIViewController {
         let modelEntity = ModelEntity(mesh: planeMesh,
                                  materials: [material])
         //modelEntity.position = SIMD3(SCNVector3(10, 10, 0))
+        
         let anchorEntity = AnchorEntity()
         
         if let body = arView.scene.findEntity(named: "body") {
