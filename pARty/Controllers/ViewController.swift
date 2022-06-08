@@ -17,7 +17,6 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     
     @IBOutlet var arView: ARView!
-    let scene = SCNScene()
     
     var anchorEntity = AnchorEntity()
     var modelEntity = ModelEntity()
@@ -28,7 +27,6 @@ class ViewController: UIViewController, ARSessionDelegate {
     var material = SimpleMaterial()
     
     var imagePicker: ImagePicker!
-    var imageFace = false
     var newPhoto = "ney"
     var photo = "ney" {
         didSet { self.photo = newPhoto } 
@@ -51,6 +49,7 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     override func viewDidLoad() {
         countdownLabel.isHidden = true
+        self.openOnboardFirstRun()
         super.viewDidLoad()
         
         // Load the "Box" scene from the "Experience" Reality File
@@ -68,12 +67,19 @@ class ViewController: UIViewController, ARSessionDelegate {
 
     }
     
+    func setMaterialToPhoto() {
+        let createFace = CreateFace()
+        self.material = createFace.createFace(photo: self.newPhoto)
+        self.modelEntity = ModelEntity(mesh: self.planeMesh,
+                                       materials: [self.material])
+        modelEntity.setPosition(SIMD3(SCNVector3(0, 6.5, 0.45)), relativeTo: self.body)
+    }
+    
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
         for anchor in anchors {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 
                 self.anchorEntity = AnchorEntity(anchor: planeAnchor)
-                
                 if let body = arView.scene.findEntity(named: "body") {
                     // adiciona o objeto na entidade
                     self.body = body
@@ -86,30 +92,10 @@ class ViewController: UIViewController, ARSessionDelegate {
         anchorEntity.addChild(modelEntity)
     }
     
-    func setMaterialToPhoto() {
-        let createFace = CreateFace()
-        self.material = createFace.createFace(photo: self.newPhoto)
-        self.modelEntity = ModelEntity(mesh: self.planeMesh,
-                                       materials: [self.material])
-        modelEntity.setPosition(SIMD3(SCNVector3(0, 6.5, 0.45)), relativeTo: self.body)
-        imageFace = false
-    }
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        for anchor in anchors {
-            if let planeAnchor = anchor as? ARPlaneAnchor {
-                
-                self.anchorEntity = AnchorEntity(anchor: planeAnchor)
-                
-                if let body = arView.scene.findEntity(named: "body") {
-                    // adiciona o objeto na entidade
-                    self.body = body
-                    self.anchorEntity.addChild(self.body)
-                }
-                arView.scene.anchors.append(self.anchorEntity)
-            }
-        }
-        self.setMaterialToPhoto()
-        anchorEntity.addChild(modelEntity)
+        //self.arView.scene.removeAnchor(self.anchorEntity)
+        //self.setMaterialToPhoto()
+        
     }
     
     @IBAction func clickButton(_ sender: Any) {
@@ -166,14 +152,29 @@ class ViewController: UIViewController, ARSessionDelegate {
         countdownLabel.text = textNumber
     }
     
+    // Onboard
+    func openOnboardFirstRun(){
+        let defaults = UserDefaults.standard
+        let isFirstRun = defaults.bool(forKey: "isMyFirstRun")
+        ///colocado como false pq o user default ja inicia como false
+        if isFirstRun == true {
+            let vc = OnboardViewController()
+            present(vc, animated: true, completion: nil)
+            defaults.set(true,forKey: "isMyFirstRun")
+        }
+    }
     
 }
 
 extension ViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
-        self.imageFace = true
+       
         self.newPhoto = PhotoManager.saveToFiles(image: image)
-        self.setMaterialToPhoto()
-        anchorEntity.removeChild(modelEntity)
+        
+        
+        let createFace = CreateFace()
+        self.material = createFace.createFace(photo: self.newPhoto)
+        self.modelEntity.model?.materials = [self.material]
+        
     }
 }
