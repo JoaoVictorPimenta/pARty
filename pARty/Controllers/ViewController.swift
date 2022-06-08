@@ -33,7 +33,23 @@ class ViewController: UIViewController, ARSessionDelegate {
         didSet { self.photo = newPhoto } 
     }
     
+    //Label que mostra o tempo
+    //usar isHidden para não mostrar
+    @IBOutlet weak var countdownLabel: UILabel!
+    
+    //criando timer
+    var timer: Timer = Timer()
+    
+    //variavel para setar o tempo inicial
+    var timeLeft: Int = 5
+    
+    //variavel para verificar acionamento do botão
+    var buttonPressed: Bool = false
+    
+    
+    
     override func viewDidLoad() {
+        countdownLabel.isHidden = true
         super.viewDidLoad()
         
         // Load the "Box" scene from the "Experience" Reality File
@@ -83,6 +99,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
     }
+    
     @IBAction func addPhoto(_ sender: Any) {
         let photos = PHPhotoLibrary.authorizationStatus()
             if photos == .notDetermined {
@@ -101,6 +118,40 @@ class ViewController: UIViewController, ARSessionDelegate {
             imagePicker.present(from: sender as! UIView)
         }
     }
+    
+    @IBAction func countdownButton(_ sender: Any) {
+        countdownLabel.isHidden = false
+        //aplicando HapticFeedback
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        //funçao de contagem regressiva para foto
+        if (buttonPressed) {
+            buttonPressed = false
+            timer.invalidate()
+        }
+        
+        else {
+            buttonPressed = true
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func timerCounter() -> Void{
+        if timeLeft > 1 {
+            timeLeft -= 1
+        }
+        else {
+            timer.invalidate()
+            timeLeft = 5
+            countdownLabel.isHidden = true
+            let takeImage = ARPhotoManager()
+            takeImage.takePhoto(view: self.arView)
+        }
+        var textNumber = String(timeLeft)
+        countdownLabel.text = textNumber
+    }
+    
+    
 }
 
 extension ViewController: ImagePickerDelegate {

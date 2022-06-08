@@ -48,6 +48,9 @@
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="5.circle" catalog="system"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="countdownButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iNz-Bi-awO"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-fv-L4H">
                                         <rect key="frame" x="333" y="46" width="34" height="28"/>
@@ -76,6 +79,12 @@
                                     <constraint firstAttribute="trailing" secondItem="2OM-fv-L4H" secondAttribute="trailing" constant="47" id="wg1-eF-bjN"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emu-6t-FJa">
+                                <rect key="frame" x="120" y="224" width="174" height="342"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="TlJ-lU-1EN"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,14 +92,19 @@
                             <constraint firstItem="My7-Rf-zXr" firstAttribute="leading" secondItem="TlJ-lU-1EN" secondAttribute="leading" id="4ju-4E-KtM"/>
                             <constraint firstAttribute="bottom" secondItem="pas-Th-zPa" secondAttribute="bottom" id="5Pr-uf-G1R"/>
                             <constraint firstItem="pas-Th-zPa" firstAttribute="trailing" secondItem="My7-Rf-zXr" secondAttribute="trailing" id="FXN-Da-d6f"/>
+                            <constraint firstItem="My7-Rf-zXr" firstAttribute="top" secondItem="Emu-6t-FJa" secondAttribute="bottom" constant="180" id="HaB-UD-XsL"/>
                             <constraint firstItem="pas-Th-zPa" firstAttribute="top" secondItem="HEK-YX-Ohz" secondAttribute="top" id="JKl-RA-tXp"/>
                             <constraint firstItem="My7-Rf-zXr" firstAttribute="trailing" secondItem="TlJ-lU-1EN" secondAttribute="trailing" id="KrR-fz-Dg6"/>
+                            <constraint firstItem="TlJ-lU-1EN" firstAttribute="trailing" secondItem="Emu-6t-FJa" secondAttribute="trailing" constant="120" id="LTw-aE-t6v"/>
+                            <constraint firstItem="Emu-6t-FJa" firstAttribute="top" secondItem="TlJ-lU-1EN" secondAttribute="top" constant="180" id="Qfe-mU-I9t"/>
                             <constraint firstItem="pas-Th-zPa" firstAttribute="leading" secondItem="My7-Rf-zXr" secondAttribute="leading" id="StI-ip-gCc"/>
+                            <constraint firstItem="Emu-6t-FJa" firstAttribute="leading" secondItem="TlJ-lU-1EN" secondAttribute="leading" constant="120" id="mtQ-jh-nqw"/>
                             <constraint firstItem="My7-Rf-zXr" firstAttribute="bottom" secondItem="TlJ-lU-1EN" secondAttribute="bottom" id="rDD-NO-DVz"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="arView" destination="pas-Th-zPa" id="bqf-BP-tt8"/>
+                        <outlet property="countdownLabel" destination="Emu-6t-FJa" id="hjX-j1-QwN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
