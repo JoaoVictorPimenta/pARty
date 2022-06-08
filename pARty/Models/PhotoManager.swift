@@ -2,22 +2,43 @@
 //  PhotoManager.swift
 //  pARty
 //
-//  Created by Beatriz Duque on 07/06/22.
+//  Created by Beatriz Duque on 08/06/22.
 //
 
 import Foundation
-import RealityKit
 import UIKit
 
-
-public class PhotoManager {
+class PhotoManager {
+    // achar diretorio onde salva as imagens
+    static func getDocumentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
     
-    func takePhoto(view: ARView) {
-        let image = view.snapshot(saveToHDR: false, completion: { image in
-            // Compriminho a imagem
-             let compressedImage = UIImage(data: (image?.pngData())!)
-             // Salvando no album
-             UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
-        })
+    // salvar arquivo
+    static func saveToFiles(image: UIImage?) -> String {
+        if let data = image?.jpegData(compressionQuality: 1){
+            let directory = getDocumentDirectory()
+            let path = directory.appendingPathComponent("\(UUID().uuidString).jpeg")
+            try? data.write(to: path)
+            return path.lastPathComponent
+        }
+        return ""
+    }
+    
+    // deletar arquivo
+    static func deleteImage(path: String) -> Bool {
+        let imagePath = getDocumentDirectory().appendingPathComponent(path)
+        if FileManager.default.fileExists(atPath: imagePath.relativePath) {
+            try? FileManager.default.removeItem(at: imagePath)
+            return true
+        }
+        return false
+    }
+    
+    // buscar imagens
+    static func getFilePath(fileName: String) -> String {
+        let imagePath = getDocumentDirectory().appendingPathComponent(fileName)
+        return imagePath.relativePath
     }
 }
