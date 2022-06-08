@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol ImagePickerDelegate: class {
+public protocol ImagePickerDelegate: AnyObject {
     func didSelect(image: UIImage?)
 }
