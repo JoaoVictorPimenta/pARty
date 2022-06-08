@@ -27,7 +27,8 @@ class ViewController: UIViewController, ARSessionDelegate {
                                         cornerRadius: 0.02)
     var material = SimpleMaterial()
     
-    var imageFace = UIImage()
+    var imagePicker: ImagePicker!
+    var imageFace = false
     var newPhoto = "ney"
     var photo = "ney" {
         didSet { self.photo = newPhoto } 
@@ -47,6 +48,8 @@ class ViewController: UIViewController, ARSessionDelegate {
         config.planeDetection = .horizontal
         arView.session.delegate = self
         arView.session.run(config)
+        imagePicker = ImagePicker(presentationController: self, delegate: self)
+
     }
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
@@ -69,12 +72,26 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     func setMaterialToPhoto() {
         let createFace = CreateFace()
-        self.material = createFace.createFace(photo: self.photo)
+        self.material = createFace.createFace(photo: self.newPhoto)
         self.modelEntity = ModelEntity(mesh: self.planeMesh,
                                        materials: [self.material])
         modelEntity.setPosition(SIMD3(SCNVector3(0, 6.5, 0.45)), relativeTo: self.body)
+        imageFace = false
     }
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        for anchor in anchors {
+            if let planeAnchor = anchor as? ARPlaneAnchor {
+                
+                self.anchorEntity = AnchorEntity(anchor: planeAnchor)
+                
+                if let body = arView.scene.findEntity(named: "body") {
+                    // adiciona o objeto na entidade
+                    self.body = body
+                    self.anchorEntity.addChild(self.body)
+                }
+                arView.scene.anchors.append(self.anchorEntity)
+            }
+        }
         self.setMaterialToPhoto()
         anchorEntity.addChild(modelEntity)
     }
@@ -83,13 +100,13 @@ class ViewController: UIViewController, ARSessionDelegate {
         let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
     }
+    
     @IBAction func addPhoto(_ sender: Any) {
         let photos = PHPhotoLibrary.authorizationStatus()
             if photos == .notDetermined {
                 PHPhotoLibrary.requestAuthorization({status in
                     if status != .denied{
-                        let imagePicker = ImagePicker(presentationController: self, delegate: self)
-                        imagePicker.present(from: sender as! UIView)
+                        self.imagePicker.present(from: sender as! UIView)
 
                     } else {
                        print("Acesso nao permitido")
@@ -97,15 +114,16 @@ class ViewController: UIViewController, ARSessionDelegate {
                 })
             }
         else {
-            let imagePicker = ImagePicker(presentationController: self, delegate: self)
-            imagePicker.present(from: sender as! UIView)
+            self.imagePicker.present(from: sender as! UIView)
         }
     }
 }
 
 extension ViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
-        //self.newPhoto =
+        self.imageFace = true
         self.newPhoto = PhotoManager.saveToFiles(image: image)
+        self.setMaterialToPhoto()
+        anchorEntity.removeChild(modelEntity)
     }
 }

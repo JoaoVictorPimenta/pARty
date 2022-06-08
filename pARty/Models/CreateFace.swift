@@ -11,21 +11,28 @@ import UIKit
 
 class CreateFace {
     
-    func createFace(photo: String) -> SimpleMaterial{
-        let path = photo
-        let imageNew = UIImage(contentsOfFile: PhotoManager.getFilePath(fileName: path))
-        
+    func createFace(photo: String) -> SimpleMaterial {        
         // material = tipo de textura pro ARKit
         var material = SimpleMaterial()
         // aplica uma cor e essa cor tem uma textura que eh a imagem
-        material.color = try! .init(tint: .white,
-                                 texture: .init(.load(named: photo, in: nil)))
         if photo != "ney"{
-            material.color = try! .init(tint: .white, texture: .init(.load(contentsOf: URL.init(string: path)!)))
+            material.baseColor = createMaterial(photo: photo)
+        }
+        else{
+            material.color = try! .init(tint: .white,
+                                    texture: .init(.load(named: photo, in: nil)))
         }
         material.metallic = .init(floatLiteral: 1.0)
         material.roughness = .init(floatLiteral: 0.5)
         
         return material
     }
+    
+    func createMaterial(photo: String) -> MaterialColorParameter {
+        let path = photo
+        let url = PhotoManager.getDocumentDirectory().appendingPathComponent(path)
+        let texture: TextureResource = try! TextureResource.load(contentsOf: url)
+        let materialTexture: MaterialColorParameter = MaterialColorParameter.texture(texture)
+        return materialTexture
+     }
 }
