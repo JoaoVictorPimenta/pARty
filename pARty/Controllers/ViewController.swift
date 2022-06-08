@@ -9,9 +9,12 @@ import UIKit
 import RealityKit
 import SceneKit
 import ARKit
+import PhotosUI
 
 
 class ViewController: UIViewController, ARSessionDelegate {
+    
+    
     
     @IBOutlet var arView: ARView!
     let scene = SCNScene()
@@ -24,11 +27,11 @@ class ViewController: UIViewController, ARSessionDelegate {
                                         cornerRadius: 0.02)
     var material = SimpleMaterial()
     
+    var imageFace = UIImage()
     var newPhoto = "ney"
     var photo = "ney" {
         didSet { self.photo = newPhoto } 
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,17 +63,49 @@ class ViewController: UIViewController, ARSessionDelegate {
                 arView.scene.anchors.append(self.anchorEntity)
             }
         }
+        self.setMaterialToPhoto()
+        anchorEntity.addChild(modelEntity)
+    }
+    
+    func setMaterialToPhoto() {
         let createFace = CreateFace()
         self.material = createFace.createFace(photo: self.photo)
         self.modelEntity = ModelEntity(mesh: self.planeMesh,
                                        materials: [self.material])
-        modelEntity.setPosition(SIMD3(SCNVector3(0, 6.5, 0.5)), relativeTo: self.body)
+        modelEntity.setPosition(SIMD3(SCNVector3(0, 6.5, 0.45)), relativeTo: self.body)
+    }
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        self.setMaterialToPhoto()
         anchorEntity.addChild(modelEntity)
     }
     
     @IBAction func clickButton(_ sender: Any) {
-        let takeImage = PhotoManager()
+        let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
+    }
+    @IBAction func addPhoto(_ sender: Any) {
+        let photos = PHPhotoLibrary.authorizationStatus()
+            if photos == .notDetermined {
+                PHPhotoLibrary.requestAuthorization({status in
+                    if status != .denied{
+                        let imagePicker = ImagePicker(presentationController: self, delegate: self)
+                        imagePicker.present(from: sender as! UIView)
+
+                    } else {
+                       print("Acesso nao permitido")
+                    }
+                })
+            }
+        else {
+            let imagePicker = ImagePicker(presentationController: self, delegate: self)
+            imagePicker.present(from: sender as! UIView)
+        }
     }
 }
 
+extension ViewController: ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        //self.newPhoto =
+        self.newPhoto = PhotoManager.saveToFiles(image: image)
+    }
+}
