@@ -19,6 +19,11 @@
                             <arView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pas-Th-zPa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8mJ-JR-ZVb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="My7-Rf-zXr">
                                 <rect key="frame" x="0.0" y="746" width="414" height="116"/>
                                 <subviews>
@@ -106,6 +111,7 @@
                     <connections>
                         <outlet property="arView" destination="pas-Th-zPa" id="bqf-BP-tt8"/>
                         <outlet property="countdownLabel" destination="Emu-6t-FJa" id="hjX-j1-QwN"/>
+                        <outlet property="feedbackView" destination="8mJ-JR-ZVb" id="FGf-H8-T5e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
