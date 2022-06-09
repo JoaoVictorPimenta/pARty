@@ -18,14 +18,13 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     @IBOutlet var arView: ARView!
     
+    // materiais pro modelo
+    var material = SimpleMaterial()
     var anchorEntity = AnchorEntity()
     var modelEntity = ModelEntity()
     var body = Entity ()
-    var planeMesh = MeshResource.generatePlane(width: 0.17,
-                                               height: 0.17,
-                                        cornerRadius: 0.06)
-    var material = SimpleMaterial()
-    
+    var planeMesh = MeshResource.generatePlane(width: 0.17, height: 0.17,cornerRadius: 0.06)
+    // imagem para o modelo
     var imagePicker: ImagePicker!
     var newPhoto = "defaultFace"
     var photo = "defaultFace" {
@@ -38,17 +37,18 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     //criando timer
     var timer: Timer = Timer()
-    
     //variavel para setar o tempo inicial
     var timeLeft: Int = 5
-    
     //variavel para verificar acionamento do botão
     var buttonPressed: Bool = false
     
+    @IBOutlet weak var feedbackView: UIView!
+    @IBOutlet weak var feedbackLabel: UIButton!
     
     
     override func viewDidLoad() {
         countdownLabel.isHidden = true
+        feedbackLabel.isHidden = true
         super.viewDidLoad()
         self.openOnboardFirstRun()
         
@@ -87,13 +87,18 @@ class ViewController: UIViewController, ARSessionDelegate {
         self.setMaterialToPhoto()
         anchorEntity.addChild(modelEntity)
     }
-    
+   
     @IBAction func clickButton(_ sender: Any) {
+
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
         
         let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
+        takeImage.feedBackScreen(view: self.feedbackView)
+        takeImage.feedBackLabel(button: self.feedbackLabel)
+
+
     }
     
     @IBAction func addPhoto(_ sender: Any) {
@@ -121,15 +126,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
         //funçao de contagem regressiva para foto
-        if (buttonPressed) {
-            buttonPressed = false
-            timer.invalidate()
-        }
-        
-        else {
-            buttonPressed = true
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
-        }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
     }
     
     @objc func timerCounter() -> Void{
@@ -142,6 +139,8 @@ class ViewController: UIViewController, ARSessionDelegate {
             countdownLabel.isHidden = true
             let takeImage = ARPhotoManager()
             takeImage.takePhoto(view: self.arView)
+            takeImage.feedBackScreen(view: self.feedbackView)
+            takeImage.feedBackLabel(button: self.feedbackLabel)
         }
         var textNumber = String(timeLeft)
         countdownLabel.text = textNumber
