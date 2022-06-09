@@ -23,12 +23,12 @@ class ViewController: UIViewController, ARSessionDelegate {
     var body = Entity ()
     var planeMesh = MeshResource.generatePlane(width: 0.17,
                                                height: 0.17,
-                                        cornerRadius: 0.02)
+                                        cornerRadius: 0.06)
     var material = SimpleMaterial()
     
     var imagePicker: ImagePicker!
-    var newPhoto = "ney"
-    var photo = "ney" {
+    var newPhoto = "defaultFace"
+    var photo = "defaultFace" {
         didSet { self.photo = newPhoto } 
     }
     
@@ -49,16 +49,11 @@ class ViewController: UIViewController, ARSessionDelegate {
     
     override func viewDidLoad() {
         countdownLabel.isHidden = true
-        self.openOnboardFirstRun()
         super.viewDidLoad()
+        self.openOnboardFirstRun()
         
-        // Load the "Box" scene from the "Experience" Reality File
         let boxAnchor = try! Experience.loadCena()
-        
-        // Add the box anchor to the scene
         arView.scene.anchors.append(boxAnchor)
-        
-        // Configurando plano horizontal
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = .horizontal
         arView.session.delegate = self
@@ -76,6 +71,7 @@ class ViewController: UIViewController, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, didAdd anchors: [ARAnchor]) {
+        self.anchorEntity.removeChild(modelEntity)
         for anchor in anchors {
             if let planeAnchor = anchor as? ARPlaneAnchor {
                 
@@ -92,24 +88,23 @@ class ViewController: UIViewController, ARSessionDelegate {
         anchorEntity.addChild(modelEntity)
     }
     
-    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
-        //self.arView.scene.removeAnchor(self.anchorEntity)
-        //self.setMaterialToPhoto()
-        
-    }
-    
     @IBAction func clickButton(_ sender: Any) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
         let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
     }
     
     @IBAction func addPhoto(_ sender: Any) {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+        
         let photos = PHPhotoLibrary.authorizationStatus()
             if photos == .notDetermined {
                 PHPhotoLibrary.requestAuthorization({status in
                     if status != .denied{
-                        self.imagePicker.present(from: sender as! UIView)
-
+                       print("Acesso permitido")
                     } else {
                        print("Acesso nao permitido")
                     }
@@ -155,12 +150,15 @@ class ViewController: UIViewController, ARSessionDelegate {
     // Onboard
     func openOnboardFirstRun(){
         let defaults = UserDefaults.standard
-        let isFirstRun = defaults.bool(forKey: "isMyFirstRun")
-        ///colocado como false pq o user default ja inicia como false
-        if isFirstRun == true {
-            let vc = OnboardViewController()
-            present(vc, animated: true, completion: nil)
-            defaults.set(true,forKey: "isMyFirstRun")
+        let isUser = defaults.bool(forKey: "isMyFirstRun")
+        // colocado como false pq o user default ja inicia como false
+        if isUser == true {
+            if let vc = storyboard?.instantiateViewController(identifier: "Onboard") as?
+                        OnboardViewController {
+                navigationController?.present(vc, animated: true, completion: nil)
+                vc.navigationController?.navigationBar.prefersLargeTitles = true
+                defaults.set(true,forKey: "isMyFirstRun")
+            }
         }
     }
     
@@ -168,10 +166,8 @@ class ViewController: UIViewController, ARSessionDelegate {
 
 extension ViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
-       
+        PhotoManager.deleteImage(path: photo)
         self.newPhoto = PhotoManager.saveToFiles(image: image)
-        
-        
         let createFace = CreateFace()
         self.material = createFace.createFace(photo: self.newPhoto)
         self.modelEntity.model?.materials = [self.material]
