@@ -15,22 +15,18 @@ public class ARPhotoManager {
     func takePhoto(view: ARView) {
         let image = view.snapshot(saveToHDR: false, completion: { image in
             // Compriminho a imagem
-             let compressedImage = UIImage(data: (image?.pngData())!)
-             // Salvando no album
-             UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
+            let compressedImage = UIImage(data: (image?.pngData())!)
+            // Salvando no album
+            UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
             view.snapshotView(afterScreenUpdates: true)
         })
     }
     func feedBackScreen(view: UIView) {
-        var count = 0
         view.backgroundColor = .white.withAlphaComponent(0.3)
         // adiciona o label que indica o powerup selecionado
-        Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true) { timer in
-            count += 1
-            if count == 1 {
-                view.backgroundColor = .clear
-                timer.invalidate()
-            }
+        Timer.scheduledTimer(withTimeInterval: 0.005 , repeats: true) { timer in
+            view.backgroundColor = .clear
+            timer.invalidate()
         }
     }
 }

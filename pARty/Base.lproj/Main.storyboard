@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -48,10 +49,10 @@
                                             <constraint firstAttribute="height" constant="31" id="Iwb-ZG-daW"/>
                                             <constraint firstAttribute="width" constant="33" id="Z60-xM-vap"/>
                                         </constraints>
-                                        <color key="tintColor" name="AccentColor"/>
+                                        <color key="tintColor" systemColor="systemCyanColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
-                                            <backgroundConfiguration key="background" image="5.circle" catalog="system"/>
+                                            <backgroundConfiguration key="background" image="timer" catalog="system"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="countdownButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iNz-Bi-awO"/>
@@ -63,7 +64,7 @@
                                             <constraint firstAttribute="height" constant="28" id="JFn-Wx-HLs"/>
                                             <constraint firstAttribute="width" constant="34" id="fll-i5-Nk0"/>
                                         </constraints>
-                                        <color key="tintColor" name="AccentColor"/>
+                                        <color key="tintColor" systemColor="systemCyanColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
                                             <backgroundConfiguration key="background" image="photo.fill.on.rectangle.fill" catalog="system"/>
@@ -267,16 +268,19 @@
         </scene>
     </scenes>
     <resources>
-        <image name="5.circle" catalog="system" width="128" height="121"/>
         <image name="circle.inset.filled" catalog="system" width="128" height="121"/>
         <image name="onboardBack" width="1125" height="2436"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="97"/>
+        <image name="timer" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.2235293984413147" green="0.52941179275512695" blue="0.75294119119644165" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BackgroundColor">
             <color red="0.93725490196078431" green="0.86274509803921573" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

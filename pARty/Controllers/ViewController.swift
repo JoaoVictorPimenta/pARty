@@ -123,15 +123,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let generator = UISelectionFeedbackGenerator()
         generator.selectionChanged()
         //funçao de contagem regressiva para foto
-        if (buttonPressed) {
-            buttonPressed = false
-            timer.invalidate()
-        }
-        
-        else {
-            buttonPressed = true
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
-        }
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
     }
     
     @objc func timerCounter() -> Void{
@@ -144,6 +136,7 @@ class ViewController: UIViewController, ARSessionDelegate {
             countdownLabel.isHidden = true
             let takeImage = ARPhotoManager()
             takeImage.takePhoto(view: self.arView)
+            takeImage.feedBackScreen(view: self.feedbackView)
         }
         var textNumber = String(timeLeft)
         countdownLabel.text = textNumber
