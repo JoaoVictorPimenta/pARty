@@ -11,16 +11,20 @@ import UIKit
 
 class CreateFace {
     
-    func createFace(photo: String) -> SimpleMaterial {        
+    func createFace(photo: String) -> SimpleMaterial {
         // material = tipo de textura pro ARKit
         var material = SimpleMaterial()
-        // aplica uma cor e essa cor tem uma textura que eh a imagem
-        if photo != "ney"{
-            material.baseColor = createMaterial(photo: photo)
-        }
-        else{
-            material.color = try! .init(tint: .white,
-                                    texture: .init(.load(named: photo, in: nil)))
+        let path = photo
+        let url = PhotoManager.getDocumentDirectory().appendingPathComponent(path)
+        do {
+            let texture: TextureResource = try TextureResource.load(contentsOf: url)
+            let materialTexture: MaterialColorParameter = MaterialColorParameter.texture(texture)
+            material.baseColor = materialTexture
+        } catch {
+            do {
+                material.color = try .init(tint: .white,
+                                           texture: .init(.load(named: photo, in: nil)))
+            } catch { print("Nao foi possivel texturizar") }
         }
         material.metallic = .init(floatLiteral: 1.0)
         material.roughness = .init(floatLiteral: 0.5)
@@ -28,11 +32,15 @@ class CreateFace {
         return material
     }
     
-    func createMaterial(photo: String) -> MaterialColorParameter {
+    func createMaterial(photo: String) -> MaterialColorParameter? {
         let path = photo
         let url = PhotoManager.getDocumentDirectory().appendingPathComponent(path)
-        let texture: TextureResource = try! TextureResource.load(contentsOf: url)
-        let materialTexture: MaterialColorParameter = MaterialColorParameter.texture(texture)
-        return materialTexture
-     }
+        do {
+            let texture: TextureResource = try TextureResource.load(contentsOf: url)
+            let materialTexture: MaterialColorParameter = MaterialColorParameter.texture(texture)
+            return materialTexture
+        } catch {
+            return nil
+        }
+    }
 }
