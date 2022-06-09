@@ -43,10 +43,12 @@ class ViewController: UIViewController, ARSessionDelegate {
     var buttonPressed: Bool = false
     
     @IBOutlet weak var feedbackView: UIView!
+    @IBOutlet weak var feedbackLabel: UIButton!
     
     
     override func viewDidLoad() {
         countdownLabel.isHidden = true
+        feedbackLabel.isHidden = true
         super.viewDidLoad()
         self.openOnboardFirstRun()
         
@@ -94,6 +96,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let takeImage = ARPhotoManager()
         takeImage.takePhoto(view: self.arView)
         takeImage.feedBackScreen(view: self.feedbackView)
+        takeImage.feedBackLabel(button: self.feedbackLabel)
 
 
     }
@@ -137,6 +140,7 @@ class ViewController: UIViewController, ARSessionDelegate {
             let takeImage = ARPhotoManager()
             takeImage.takePhoto(view: self.arView)
             takeImage.feedBackScreen(view: self.feedbackView)
+            takeImage.feedBackLabel(button: self.feedbackLabel)
         }
         var textNumber = String(timeLeft)
         countdownLabel.text = textNumber

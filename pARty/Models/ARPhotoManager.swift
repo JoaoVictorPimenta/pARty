@@ -29,4 +29,14 @@ public class ARPhotoManager {
             timer.invalidate()
         }
     }
+    
+    func feedBackLabel(button: UIButton) {
+        button.isHidden = false
+        
+        // adiciona o label que indica o powerup selecionado
+        Timer.scheduledTimer(withTimeInterval: 1 , repeats: true) { timer in
+            timer.invalidate()
+            button.isHidden = true
+        }
+    }
 }
