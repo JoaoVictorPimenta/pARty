@@ -41,11 +41,11 @@ open class ImagePicker: NSObject {
     public func present(from sourceView: UIView) {
 
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if let action = self.action(for: .photoLibrary, title: "Biblioteca de Imagens") {
+        if let action = self.action(for: .photoLibrary, title: "Image gallery") {
             alertController.addAction(action)
         }
 
-        alertController.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             alertController.popoverPresentationController?.sourceView = sourceView

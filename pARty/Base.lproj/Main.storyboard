@@ -74,25 +74,24 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRh-FJ-53B">
-                                        <rect key="frame" x="128.5" y="42" width="157" height="40"/>
+                                        <rect key="frame" x="120" y="42" width="174" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="FGC-hc-QaH"/>
-                                            <constraint firstAttribute="width" constant="157" id="Whx-Nu-ltV"/>
+                                            <constraint firstAttribute="height" constant="40" id="lrj-Co-Fau"/>
                                         </constraints>
                                         <color key="tintColor" name="AccentColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Foto salva na galeria"/>
+                                        <buttonConfiguration key="configuration" style="gray" title="Picture saved in gallery"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="xab-NE-zrl" firstAttribute="centerX" secondItem="My7-Rf-zXr" secondAttribute="centerX" id="0uj-Rd-c6e"/>
                                     <constraint firstAttribute="bottom" secondItem="xab-NE-zrl" secondAttribute="bottom" constant="8" id="7dQ-rL-USX"/>
-                                    <constraint firstItem="xab-NE-zrl" firstAttribute="top" secondItem="XRh-FJ-53B" secondAttribute="bottom" constant="38" id="Eot-NW-gJF"/>
+                                    <constraint firstItem="XRh-FJ-53B" firstAttribute="top" secondItem="My7-Rf-zXr" secondAttribute="top" constant="42" id="7lq-w0-CzU"/>
                                     <constraint firstItem="yl2-cU-yyK" firstAttribute="leading" secondItem="My7-Rf-zXr" secondAttribute="leading" constant="49" id="I3J-os-Zxy"/>
                                     <constraint firstAttribute="trailing" secondItem="2OM-fv-L4H" secondAttribute="trailing" constant="48" id="J6C-4P-Fi5"/>
                                     <constraint firstAttribute="bottom" secondItem="yl2-cU-yyK" secondAttribute="bottom" constant="32" id="Ova-7N-9MI"/>
-                                    <constraint firstItem="XRh-FJ-53B" firstAttribute="centerX" secondItem="My7-Rf-zXr" secondAttribute="centerX" id="dlL-Xb-bDX"/>
+                                    <constraint firstItem="XRh-FJ-53B" firstAttribute="centerX" secondItem="My7-Rf-zXr" secondAttribute="centerX" id="cfC-T8-v5v"/>
                                     <constraint firstAttribute="bottom" secondItem="2OM-fv-L4H" secondAttribute="bottom" constant="32" id="gpf-Lf-B3v"/>
                                 </constraints>
                             </view>
