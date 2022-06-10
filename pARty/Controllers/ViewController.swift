@@ -151,7 +151,7 @@ class ViewController: UIViewController, ARSessionDelegate {
         let defaults = UserDefaults.standard
         let isUser = defaults.bool(forKey: "isMyFirstRun")
         // colocado como false pq o user default ja inicia como false
-        if isUser == true {
+        if isUser == false {
             if let vc = storyboard?.instantiateViewController(identifier: "Onboard") as?
                         OnboardViewController {
                 navigationController?.present(vc, animated: true, completion: nil)
