@@ -339,7 +339,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = pARty/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "pARty needs access to your camera so you can position the 3D model in the environment and take pictures";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Party need access to your gallery so we can select a new face to the model";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -373,7 +373,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = pARty/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "pARty needs access to your camera so you can position the 3D model in the environment and take pictures";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save your party photo! ";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Party need access to your gallery so we can select a new face to the model";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
