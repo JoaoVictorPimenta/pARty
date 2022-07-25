@@ -15,3 +15,25 @@ Com o pARty você pode tirar fotos com quem quiser e guardar aqueles momentos es
 | -------- |
 | ![Frame 69](https://user-images.githubusercontent.com/53840501/162065740-19fb6162-0956-4b19-b5ea-e10d4277995b.png) |
 |[Download](https://apps.apple.com/us/app/party-my-ar-meet/id1628368572)|
+
+## Authors
+ <table>
+   <tr>
+     <td align="center">
+       <a href="https://github.com/biaduque">
+         <img src="https://avatars.githubusercontent.com/u/53840501?v=4" height="auto" width="100" style="corner-radius:50%" alt="Foto de perfil"/<br>
+         <sub>
+           <br> Beatriz Duque </br>
+         </sub>
+       </a>
+     </td>
+     <td align="center">
+       <a href="https://github.com/JoaoVictorPimenta">
+         <img src="https://avatars.githubusercontent.com/u/83611462?v=4" height="auto" width="100" style="corner-radius:50%" alt="Foto de perfil"/<br>
+         <sub>
+           <br> João Pimenta </br>
+         </sub>
+       </a>
+     </td>
+    </tr>
+ </table>
