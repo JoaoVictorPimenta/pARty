@@ -2,7 +2,6 @@
 
 ![Frame 21](https://user-images.githubusercontent.com/53840501/180856809-174a6487-c12e-458a-86a8-b0f3950c7b00.png)
 
-Nano Challenge App
 Com o pARty você pode tirar fotos com quem quiser e guardar aqueles momentos especiais ou postá-los em suas redes sociais.
 
 *Posicione o modelo 3D em um plano horizontal, selecione qualquer foto de rosto nele e tire fotos com quem quiser! O aplicativo usa o AR Kit para simular sua reunião com quem você quiser.*
